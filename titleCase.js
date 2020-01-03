@@ -1,11 +1,22 @@
 function titleCase(title, minorWords) {
-  const titleArr = title.split(" ");
+  if (title === "") {
+    return "";
+  }
+  const titleArr = title.toLowerCase().split(" ");
+  const minorWordsArr = minorWords ? minorWords.toLowerCase().split(" ") : [];
   const newArr = [];
-  titleArr.map(word => {
-    newArr.push(word.toLowerCase());
+  // console.log(titleArr);
+  titleArr.map((word, index) => {
+    if (minorWordsArr.includes(word) && index !== 0) {
+      // console.log("you're a minor");
+      newArr.push(word.toLowerCase());
+    } else {
+      let newWord = word[0].toUpperCase() + word.substring(1);
+      newArr.push(newWord);
+    }
   });
-  console.log(titleArr);
-  console.log(newArr);
+  // console.log(titleArr);
+  console.log(newArr.join(" "));
 }
 
 titleCase("the quick brown fox");
